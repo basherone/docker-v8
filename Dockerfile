@@ -27,6 +27,10 @@ RUN fetch v8
 
 WORKDIR /v8
 
+RUN git checkout 7.8.279.23
+
+COPY d8.cc src/d8/d8.cc
+
 RUN gn gen out/x64.release --args='v8_monolithic=true v8_use_external_startup_data=false is_component_build=false is_debug=false target_cpu="x64" use_goma=false goma_dir="None" v8_enable_backtrace=true v8_enable_disassembler=true v8_enable_object_print=true v8_enable_verify_heap=true'
 
 RUN ninja -C out/x64.release d8
